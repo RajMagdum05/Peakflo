@@ -1,0 +1,240 @@
+{
+  "label": "LOCAL SIMULATION - mock server on 127.0.0.1, not Xero",
+  "milestone": "M1",
+  "generated_at_utc": "2026-11-16T14:06:31.278984+00:00",
+  "duplicate_effect_reproduced": true,
+  "client_under_test": "pfmcp",
+  "mock_delay_seconds": 7.0,
+  "max_attempts": 2,
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "httpx": "0.28.1",
+    "httpx_default_timeout": "Timeout(timeout=5.0)"
+  },
+  "scenarios": [
+    {
+      "scenario": "control_ok",
+      "mock_mode": "ok",
+      "client": "pfmcp",
+      "intended_operations": 1,
+      "attempts_made": 1,
+      "ledger_entries_committed": 1,
+      "duplicate_entries": 0,
+      "idempotency_keys_seen": [
+        null
+      ],
+      "attempt_records": [
+        {
+          "outcome": "SUCCESS",
+          "elapsed_s": 0.695,
+          "response": {
+            "Payments": [
+              {
+                "PaymentID": "a5d2544e-cbf1-4b1a-9069-0c1f652b2131",
+                "committed_at": 1794837980.4583397,
+                "http_method": "POST",
+                "idempotency_key": null,
+                "payload": {
+                  "Payments": [
+                    {
+                      "Invoice": {
+                        "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                      },
+                      "Account": {
+                        "AccountID": "22222222-2222-2222-2222-222222222222"
+                      },
+                      "Amount": 1000.0,
+                      "Date": "2026-11-16",
+                      "Reference": "INV-DEMO-001"
+                    }
+                  ]
+                }
+              }
+            ],
+            "__mock_mode__": "ok",
+            "__attempt_no__": 1
+          },
+          "tool_would_return": "{\"Payments\": [{\"PaymentID\": \"a5d2544e-cbf1-4b1a-9069-0c1f652b2131\", \"committed_at\": 1794837980.4583397, \"http_method\": \"POST\", \"idempotency_key\": null, \"payload\": {\"Payments\": [{\"Invoice\": {\"InvoiceID",
+          "attempt": 1
+        }
+      ],
+      "ledger": {
+        "payment_count": 1,
+        "payments": [
+          {
+            "PaymentID": "a5d2544e-cbf1-4b1a-9069-0c1f652b2131",
+            "committed_at": 1794837980.4583397,
+            "http_method": "POST",
+            "idempotency_key": null,
+            "payload": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "attempt_index": 1,
+            "http_method": "POST",
+            "path": "/api.xro/2.0/Payments",
+            "idempotency_key": null,
+            "received_at": 1794837980.458235,
+            "body": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "baseline_timeout_retry",
+      "mock_mode": "commit_then_slow",
+      "client": "pfmcp",
+      "intended_operations": 1,
+      "attempts_made": 2,
+      "ledger_entries_committed": 2,
+      "duplicate_entries": 1,
+      "idempotency_keys_seen": [
+        null,
+        null
+      ],
+      "attempt_records": [
+        {
+          "outcome": "EXCEPTION",
+          "elapsed_s": 5.145,
+          "exception_type": "ReadTimeout",
+          "exception_str": "",
+          "tool_would_return": "Error: ",
+          "attempt": 1
+        },
+        {
+          "outcome": "EXCEPTION",
+          "elapsed_s": 5.088,
+          "exception_type": "ReadTimeout",
+          "exception_str": "",
+          "tool_would_return": "Error: ",
+          "attempt": 2
+        }
+      ],
+      "ledger": {
+        "payment_count": 2,
+        "payments": [
+          {
+            "PaymentID": "fbaf8c7f-0b62-47da-b799-b12858b9878f",
+            "committed_at": 1794837981.1110482,
+            "http_method": "POST",
+            "idempotency_key": null,
+            "payload": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          },
+          {
+            "PaymentID": "1fad0a80-3312-4f55-8ad4-28748966e8ac",
+            "committed_at": 1794837986.2022498,
+            "http_method": "POST",
+            "idempotency_key": null,
+            "payload": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          }
+        ],
+        "attempt_count": 2,
+        "attempts": [
+          {
+            "attempt_index": 1,
+            "http_method": "POST",
+            "path": "/api.xro/2.0/Payments",
+            "idempotency_key": null,
+            "received_at": 1794837981.1109054,
+            "body": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          },
+          {
+            "attempt_index": 2,
+            "http_method": "POST",
+            "path": "/api.xro/2.0/Payments",
+            "idempotency_key": null,
+            "received_at": 1794837986.2022038,
+            "body": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

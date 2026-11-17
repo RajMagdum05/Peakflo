@@ -1,0 +1,212 @@
+{
+  "label": "LOCAL SIMULATION - mock server on 127.0.0.1, not Xero",
+  "milestone": "M1",
+  "generated_at_utc": "2026-11-16T14:07:38.760092+00:00",
+  "duplicate_effect_reproduced": false,
+  "client_under_test": "pfmcp",
+  "mock_delay_seconds": 1.0,
+  "max_attempts": 2,
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "httpx": "0.28.1",
+    "httpx_default_timeout": "Timeout(timeout=5.0)"
+  },
+  "scenarios": [
+    {
+      "scenario": "control_ok",
+      "mock_mode": "ok",
+      "client": "pfmcp",
+      "intended_operations": 1,
+      "attempts_made": 1,
+      "ledger_entries_committed": 1,
+      "duplicate_entries": 0,
+      "idempotency_keys_seen": [
+        null
+      ],
+      "attempt_records": [
+        {
+          "outcome": "SUCCESS",
+          "elapsed_s": 0.245,
+          "response": {
+            "Payments": [
+              {
+                "PaymentID": "2ef73474-7e9a-4f63-8bb3-dbd26a78f460",
+                "committed_at": 1794838057.225475,
+                "http_method": "POST",
+                "idempotency_key": null,
+                "payload": {
+                  "Payments": [
+                    {
+                      "Invoice": {
+                        "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                      },
+                      "Account": {
+                        "AccountID": "22222222-2222-2222-2222-222222222222"
+                      },
+                      "Amount": 1000.0,
+                      "Date": "2026-11-16",
+                      "Reference": "INV-DEMO-001"
+                    }
+                  ]
+                }
+              }
+            ],
+            "__mock_mode__": "ok",
+            "__attempt_no__": 1
+          },
+          "tool_would_return": "{\"Payments\": [{\"PaymentID\": \"2ef73474-7e9a-4f63-8bb3-dbd26a78f460\", \"committed_at\": 1794838057.225475, \"http_method\": \"POST\", \"idempotency_key\": null, \"payload\": {\"Payments\": [{\"Invoice\": {\"InvoiceID\"",
+          "attempt": 1
+        }
+      ],
+      "ledger": {
+        "payment_count": 1,
+        "payments": [
+          {
+            "PaymentID": "2ef73474-7e9a-4f63-8bb3-dbd26a78f460",
+            "committed_at": 1794838057.225475,
+            "http_method": "POST",
+            "idempotency_key": null,
+            "payload": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "attempt_index": 1,
+            "http_method": "POST",
+            "path": "/api.xro/2.0/Payments",
+            "idempotency_key": null,
+            "received_at": 1794838057.2254388,
+            "body": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "baseline_timeout_retry",
+      "mock_mode": "commit_then_slow",
+      "client": "pfmcp",
+      "intended_operations": 1,
+      "attempts_made": 1,
+      "ledger_entries_committed": 1,
+      "duplicate_entries": 0,
+      "idempotency_keys_seen": [
+        null
+      ],
+      "attempt_records": [
+        {
+          "outcome": "SUCCESS",
+          "elapsed_s": 1.019,
+          "response": {
+            "Payments": [
+              {
+                "PaymentID": "e7debc91-3300-470d-a7e3-87d0762d1887",
+                "committed_at": 1794838057.746611,
+                "http_method": "POST",
+                "idempotency_key": null,
+                "payload": {
+                  "Payments": [
+                    {
+                      "Invoice": {
+                        "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                      },
+                      "Account": {
+                        "AccountID": "22222222-2222-2222-2222-222222222222"
+                      },
+                      "Amount": 1000.0,
+                      "Date": "2026-11-16",
+                      "Reference": "INV-DEMO-001"
+                    }
+                  ]
+                }
+              }
+            ],
+            "__mock_mode__": "commit_then_slow"
+          },
+          "tool_would_return": "{\"Payments\": [{\"PaymentID\": \"e7debc91-3300-470d-a7e3-87d0762d1887\", \"committed_at\": 1794838057.746611, \"http_method\": \"POST\", \"idempotency_key\": null, \"payload\": {\"Payments\": [{\"Invoice\": {\"InvoiceID\"",
+          "attempt": 1
+        }
+      ],
+      "ledger": {
+        "payment_count": 1,
+        "payments": [
+          {
+            "PaymentID": "e7debc91-3300-470d-a7e3-87d0762d1887",
+            "committed_at": 1794838057.746611,
+            "http_method": "POST",
+            "idempotency_key": null,
+            "payload": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "attempt_index": 1,
+            "http_method": "POST",
+            "path": "/api.xro/2.0/Payments",
+            "idempotency_key": null,
+            "received_at": 1794838057.7465825,
+            "body": {
+              "Payments": [
+                {
+                  "Invoice": {
+                    "InvoiceID": "11111111-1111-1111-1111-111111111111"
+                  },
+                  "Account": {
+                    "AccountID": "22222222-2222-2222-2222-222222222222"
+                  },
+                  "Amount": 1000.0,
+                  "Date": "2026-11-16",
+                  "Reference": "INV-DEMO-001"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

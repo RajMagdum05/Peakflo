@@ -1,0 +1,22 @@
+# The pfMCP checkout is a separate clone of https://github.com/peakflo/pfMCP
+# with its own git history, its own branches, and a large .venv. It must NOT
+# be committed into this repository -- `git add Peakflo/` would otherwise
+# record it as an embedded gitlink pointing at a commit that does not exist
+# upstream, which is confusing and unusable for anyone cloning this.
+#
+# The prototype's own change to that repository lives there, on branch
+# feat/retry-safe-create-payment (commit eb4685f). To reproduce this project,
+# clone pfMCP separately -- see BUILD_LOG.md M0 for the exact upstream commit.
+pfMCP/
+
+# Python artefacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local environment files. No secrets are used by this project, and none
+# should ever be added, but this guards against accidents.
+.env
+*.env
